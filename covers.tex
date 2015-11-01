@@ -1,0 +1,178 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,epsfig,epstopdf,titling,url,array}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\begin{document}
+   
+\begin{thm}
+A set S in $\mathbb{R}^n$ is closed if and only if it contains all of its adherent points. 
+\begin{proof}
+(Closed $\Rightarrow$ contains): We need to show that if $\mathbb{R}^n - S$ is open and $x$ adheres to $S$ then $x$ belongs to $S$
+
+Proof by contradiction:
+Suppose, for the sake of obtaining a contradiction, that $x$ is not in S, but $x$ adheres to $S$. Since $\mathbb{R}^n - S$ is open, it follows that there is an open ball $B(x; r)$ for some $r>0$ that is entirely contained in $\mathbb{R}^n - S$. But then this ball is a ball about $x$ that does not include any elements of $S$, which contradicts our assumption that $x$ is an adherent point of $S$.
+
+Note that is is also fairly easy to prove directly.  To do this, it is sufficient to show that if $x$ is an adherent point of $S$, then $x$ belongs to $S$. By definition, if $x$ adheres to $S$, every open ball around $x$ contains at least one element of $S$. Since $S$ is closed, its complement is open, which means that for any $x'$ in the complement of $S$, there has to be an open ball around $x'$ that includes no elements of $S$.  Now our friend $x$ can't have such a ball, because every ball around him intersects $S$.  Therefore $x$ can't be in the complement of $S$, which means he is Flipper-happy inside $S$!
+
+(Contains $\Rightarrow$ closed):
+We need to show that if $S$ contains all of its adherent points, then it is closed.  Assume $S$ contains all of its adherent points.  We need to show that $\mathbb{R}^n - S$ is open. So let $x$ be an arbitrary point in $\mathbb{R}^n - S$.  We need to show that there is an open ball containing $x$ that does not intersect $S$ (this will show that $x$ is an interior point of $\mathbb{R}^n - S$).  Since $S$ contains all of its adherent points, and $x$ is in $\mathbb{R}^n - S$ (therefore $x$ is not in $S$), $x$ is not an adherent point.  This means there must be an $r>0$ such that $B(x;r) \cap S = \emptyset$. 
+\end{proof}
+\end{thm}
+
+\begin{thm}
+A set S is closed if and only if its equal to its closure. 
+\begin{proof}
+$\Rightarrow$:
+Suppose that $S$ is closed. Let $\bar{S}$ denote the closure of $S$. Since every element of $S$ is an adherent point of $S$, it follows that $S$ is contained in $\bar{S}$ so it suffices to show that $\bar{S}$ is contained in $S$.  So let $x$ be an arbitrary element of $\bar{S}$. We will show that $x$ can't be in $\mathbb{R}^n - S$, from which it will follow that $x$ is in $S$. Since $x$ is an adherent point of $S$, every open ball containing $x$ must intersect $S$.  That means there can't be an open ball about $x$ entirely included in the complement of $S$.  Now since $S$ is closed, its complement, $\mathbb{R}^n - S$, is open, which means that if $x$ is in $\mathbb{R}^n - S$ there has to be a ball around it also in $\mathbb{R}^n - S$, so $x$ can't be in $\mathbb{R}^n - S$, which means $x$ is in $S$.  Note that we have just repeated the proof of half of the previous theorem.
+
+$\Leftarrow$:
+Now suppose that $S = \bar{S}$.  We need to show that $S$ is closed, or $\mathbb{R}^n - S$ is open.  Let $x$ be an element of $\mathbb{R}^n - S$.  If every open ball about $x$ intersects $S$, then $x$ is by definition and adherent point of $S$, which by hypothesis means that $x$ is in $S$. Since our hypothesis is that $S$ contains all of its adherent points (because $S = \bar{S}$), there must therefore be an open ball about $x$ entirely included in $\mathbb{R}^n - S$.  Since $x$ was arbitrary, this shows that $\mathbb{R}^n - S$ is open, which means $S$ is closed.
+\end{proof}
+\end{thm}
+
+\begin{defn}
+The \textit{boundary} of a set $S$ consists of \{$x \in S$ : every open ball about x contains an element of $S$ and an element of the complement of $S$\}
+\end{defn}
+
+\begin{defn}
+An \textit{isolated point} in a set $S$ is an element of $S$ for which there is an $r>0$ such that $B(x;r) \cap (S - \{x\}) = \emptyset$
+\end{defn}
+
+\begin{defn}
+An \textit{accumulation point} in a set $S$ is a point $x$ such that for any $r>0$, $B(x;r) \cap (S - \{x\}) \neq \emptyset$
+\end{defn}
+
+\begin{rem}
+For any set $S$, every isolated point of $S$ is a boundary point of $S$.  For example, considered as a subset of $\mathbb{R}$, the set of integers, $\mathbb{Z}$ consists entirely of isolated points, so every point of it is a boundary point.  Note that the same is true of any line, such as the $x$ axis in $\mathbb{R}^2$ or any plane in $\mathbb{R}^3$.
+\end{rem}
+
+\begin{exmp}
+The set of all accumulation points of $\mathbb{Q}$ is $\mathbb{R}$.
+\begin{proof}
+Let $S$ be the set of all accumulation points of $\mathbb{Q}$.  Clearly, $S$ is a subset of $\mathbb{R}$, so it suffices to show that every real number is in $S$.  Let $x$ be an arbitrary real number.  For each $r>0$ there is a rational number $q$ such that $|x-q|<r$.  This means that $q \in B(x;r)$.  Since both $x$ and $r$ were arbitrary, this shows that $x$ is an accumulation point of $\mathbb{Q}$. 
+\end{proof}
+\end{exmp}
+
+\begin{exmp}
+Find all accumulation points of the set $(a,b)$ where $a<b$ and the set is considered as a subset of $\mathbb{R}$
+
+Clearly each interior point, i.e. every $c$ satisfying $a<c<b$ is an accumulation point, as the strict inequalities guarantee that there are infinitely many points between it and $a$ on the left and $b$ on the right, which means any ball around it contains infinitely many points from $(a,b)$ distinct from it.  The same is true for $a$ and $b$, because any ball around $a$ extends to include infinitely many points distinct from $a$ in $(a,b)$ on the right and any ball around $b$ similarly intersects $(a,b)$ on the left.  So both $a$ and $b$ are accumulation points.  Now consider $d$ completely outside the interval - i.e. either $d<a$ or $d>b$.  In each case, there is a positive distance from $d$ to $(a,b)$ so you can construct a ball around $d$ that does not intersect $(a,b)$.  It follows that $d$ is not an accumulation point of $(a,b)$, so the accumulation points of $(a,b)$ are exactly $(a,b)$.
+\end{exmp}
+
+\begin{thm}
+If $x$ is an accumulation point of $S$ then every ball about $x$ contains infinitely many elements of $S$.
+\begin{proof}
+Let $x$ be an accumulation point of $S$ and let $r$ be an arbitrary positive real number.  We will show that $B(x;r)$ contains infinitely many elements of $S$. By definition, there is a element $x_0$ distinct from $x$ in $B(x;r)$.  Since $x$ is distinct from $x_0$, they are separated in $\mathbb{R}^n$ by a positive distance $r_0$.  This means that $B(x;r_0 / 2)$ excludes $x_0$. Note that since $x_0$ is in $B(x;r)$ it follows that $r_0<r$ so that $B(x;r_0 / 2)$ is contained in $B(x;r)$.  Again because $x$ is an accumulation point, there is now $x_1$ distinct from $x$ in $B(x;r_0 / 2)$.  By construction, $x_1$ can't be the same as $x_0$.  There is nothing stopping us repeating this construction to find $x_2$ distinct from $x_0$ and $x_1$ in a ball with smaller radius again fully contained in $B(x;r)$.  Continuing this process \textit{ad infinitum} yields an infinite set of points of $S$ distinct from $x$ in $B(x;r)$.
+\end{proof}
+\end{thm}
+
+\begin{defn}
+A set $S$ is \textit{countable} if there is an injective (one-to-one) function from $S$ into the natural numbers.
+\end{defn}
+
+\begin{exmp}
+The set $\mathbb{Q}$ of rational numbers is countable, as is $\mathbb{Q}^n$ for each $n$
+\end{exmp}
+
+\begin{defn}
+A collection $F$ of open sets is said to be a covering of a given set $S$ if $S$ is contained in the union of all sets $A$ in $F$. The collection of $F$ is also said to cover $S$. If $F$ is a collection of open sets, then $F$ is called an \textit{open covering} of $S$. 
+\end{defn}
+
+\begin{exmp}
+Let $S = (0,1)$ considered as a subset of $\mathbb{R}$. Let $F = \{(1/n,1) : n$ is a positive integer$\}$. Then $F$ is an open covering of $S$ because for each $n$, $(1/n,1)$ is an open set and every $x$ in $(0,1)$ belongs to one of these subintervals.
+\end{exmp}
+
+\begin{exmp}
+Let $\mathbb{Q}$ be the set of rational numbers considered as a subset of $\mathbb{R}$.  Let $q_1, q_2, q_3, ...$ be an enumeration of $\mathbb{Q}$ (we know this is possible because $\mathbb{Q}$ is countable) and let $F = \{B(q_i; 1/i) : i \in \mathbb{N}\}$.  Then $F$ is an open covering of $\mathbb{Q}$.
+\end{exmp}
+
+\begin{rem}
+The last two examples both have the property that there is no finite subcovering included in $F$ that covers the set being covered.  In the first example, any finite subcovering would only include intervals $(1/n,1)$ for $n$ up to a maximum value, say $N$.  Any element of $(0, 1/(N + 1))$ would be excluded from the union of the sets in the subcovering.  In the second example, suppose $F'$ is a subcovering of $F$.  Let $q'$ be the largest ball center (there are only finitely many balls, so only finitely many centers and there must be a largest one) and let $r'$ be the largest radius among the balls in $F'$.  Then nothing larger than $r' + q'$ can be covered by $F'$ which means it can't cover all of $\mathbb{Q}$.
+\end{rem}
+
+\begin{lem}
+Let $G$ be the set of all balls centered at points with rational coordinates with rational radii in $\mathbb{R}^n$, let $x$ be any element of $\mathbb{R}^n$ and let $r$ be an arbitrary positive real number.  Then there exists a ball $B(q; s)$ with $s < r$ that contains $x$.
+\begin{proof}
+Write $x = (x_1, x_2, ... , x_n)$.  For each $i = 1,2, ... n$ let $q_i$ be a rational number within $r/n$ of $x_i$.  Then set $q = (q_1, q_2, ... , q_n)$.  Now the distance between $x$ and $q$ is $\sqrt{(x_1 - q_1)^2 + (x_2 - q_2)^2 + ... + (x_n - q_n)^2}$ which is at most $\sqrt{n (r/n)^2} < r$.  Therefore any ball centered at $q$ with radius less than or equal to $r$ contains $x$ (because $x$ is within $r$ of $q$).  So in particular, if we let $s$ be any rational number less than $r$, $B(q;s)$ contains $x$.
+\end{proof}
+\end{lem}
+
+\begin{thm}
+\textbf{(Lindelof Covering Theorem)} Let $F$ be an open covering of $A$ in $\mathbb{R}^n$. Then there is a countable sub-collection of $F$ that also covers $A$. 
+\begin{proof}
+Let $G$ be the set of all balls in $\mathbb{R}^n$  centered at points with rational coordinates with rational radii.  Since $G$ is the countable union of countable sets, $G$ is countable.  Now for each $x$ in $A$, let $F_x$ be an element of $F$ that contains $x$.  Since $F_x$ is open, there must be an open ball $B(x;r) \subset F_x$ for some $r>0$. By the lemma, there is a $B(q;s) \in G$ fully contained in $B(x;r)$ that also contains $x$ (the lemma tells us directly that we can get a $B(q;s)$ containing $x$ with $s < r / 2$. Any point in $B(q;s)$ must be within $r/2$ of $q$, and $x$ is in this ball, so all other points in $B(q;s)$ have to be within $r$ of $x$, which means $B(x;r) \subset B(q;s)$).  Now consider the mapping $x \rightarrow B(q;s)$ defined by the above construction (start with $x$, find a $F_x$ it belongs to, then get $B(q;s) \subset F_x$ containing $x$ and map $x$ to $B(q;s)$.  For each $B(q;s)$ in the range of this mapping, select one of the $F_x$ that contains it and let $F' \subset F$ be the set of all selected $F_x$. Since there are only countably many $B(q;s)$ (all are in $G$), $F'$ is countable.  It covers all of $A$ because every $x$ in $A$ is in a ball fully contained in one of its elements.  
+
+\end{proof}
+\end{thm}
+
+\begin{cor}
+A set can contain only countably many isolated points.
+\begin{proof}
+Suppose, for the sake of obtaining a contradiction, that there exists a set $S$ with uncountably many isolated points.  Let $T$ be the set of isolated points in $S$. Note that as points of $T$, all of its elements are also isolated, so $T$ is an uncountable set consisting of only isolated points. By definition of an isolated point, for each $t$ in $T$ there is a positive real number $r_t$ such that $B(t;r_t)$ includes no other elements of $T$. Let $F$ be the set of all such balls.  Then $F$ is an uncountable open covering of $T$ that can't have a countable subcovering that also covers $T$, since the elements of $F$ were defined to each include only one element of $T$ and there are uncountably many elements of $T$.
+\end{proof}
+\end{cor}
+\begin{defn}
+A set $A$ in $\mathbb{R}^n$ is \textit{compact} if every open covering of $A$ contains a finite sub-covering.
+\end{defn}
+\begin{exmp}
+The example above shows that $(0,1)$ is not a compact subset of $\mathbb{R}$
+\end{exmp}
+\begin{exmp}
+The second example above shows that $\mathbb{Q}$ is not compact in $\mathbb{R}$
+\end{exmp}
+\begin{exmp}
+Any bounded closed interval $[a,b]$ in $\mathbb{R}$ is compact.  To prove this, you need to basically repeat the proof of the Heine Borel theorem (below).
+\end{exmp}
+\begin{exmp}
+The unit circle in $\mathbb{R}^2$ (set of all points exactly one unit from the origin) is compact in $\mathbb{R}^2$, but its interior (the set of points less than one unit from the origin is open, not compact.
+\end{exmp}
+\begin{exmp}
+The whole real line is not compact.  Consider the open covering that puts a ball of radius 1 around each real number.  By Lindlof, this has a countable sub-covering; but there can't be a finite one, because any finite sub-covering would have a max and min x-ball and the largest covered number would be the max +1.
+\end{exmp}
+\begin{rem}
+If $A$ and $B$ are compact, then $A \cup B$ is compact.  The proof of this is a simple exercise.  Note that every open covering of $A \cup B$ is a covering of both $A$ and $B$.  From this it follows that the union of finitely many closed intervals is compact.
+\end{rem}
+\begin{exmp}
+Any finite subset of any topological space is compact.
+\begin{proof}
+Let $A = \{a_0, a1, ... a_n\}$ be a finite set and let $F$ be an open covering of $A$.  For each $i = 0, ..., n$ let $O_i \in F$ be an open set in $F$ containing $a_i$.  These must exist since $F$ covers $A$.  Then clearly $\{O_i \colon i = 0, ..., n\}$ is a finite subcovering of $F$ that covers $A$.
+\end{proof}
+\end{exmp}
+\begin{thm}
+Let $F$ be an arbitrary collection (possibly uncountable) of open sets.  Then the union of all of the sets in $F$ is open.
+\begin{proof}
+Let $x$ be an element of the union of the sets in $F$.  We need to show that there is an open ball about $x$ included in the union. Now $x$ must be in one of the sets in $F$, say $A \in F$ contains $x$.  Since $A$ is open, there is an open ball $B(x;r)$ for some $r>0$ that is contained in $A$. Since $A$ is an element of $F$, it follows that this ball is contained in the union of all sets in $F$.  Since $x$ was arbitrary, this shows that the union of the sets in $F$ is open.
+\end{proof}
+\end{thm}
+\begin{thm}
+Let $F$ be an arbitrary collection (possibly uncountable) of closed sets. Then the intersection of all of the sets in $F$ is closed.
+\begin{proof}
+This result follows from the preceding theorem.  The intersection of all of the sets in $F$ is the union of the complements of the sets in $F$ (exercise: prove this carefully).  Each set in $F$ is closed, so by definition its complement is open.  By the preceding theorem, the union of the complements is open.
+\end{proof}
+\end{thm}
+\begin{rem}
+It is not true that arbitrary unions of closed sets are closed or that arbitrary intersections of open sets are open.   
+\end{rem}
+\begin{exmp}
+Consider the collection of closed sets $$\{[0,1 - 1/n] : n = 1,2, 3...\}$$.  The union of these sets is $[0,1)$ which is not closed (since the accumulation point, $1$ is not in the set).  This shows that a countable union of closed sets need not be closed.
+\end{exmp}
+\begin{exmp}
+Consider the collection of open sets $$\{(-1/n,1/n) : n = 1,2, 3...\}$$.  The intersection of these sets is $\{0\}$.  This set is obviously not open, since any ball around its unique element contains other real numbers. This shows that a countable intersection of open sets need not be open.
+\end{exmp}
+\begin{thm}{(Cantor Intersection Theorem)}
+Let $\{C_0, C_1, ... C_n, ...\}$ be a countable sequence of non-empty closed subsets of $\mathbb{R}^n$ such that for each $n$, $C_{n+1} \subset C_n$.  Suppose further that $C_0$ is bounded. Then the intersection of all of the $C_n$ is non-empty and closed.
+\end{thm}
+\begin{thm}{(Heine-Borel)}
+Every closed and bounded subset of $\mathbb{R}^n$ is compact.
+\end{thm}
+\end{document}

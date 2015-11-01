@@ -1,0 +1,87 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,epsfig,epstopdf,titling,url,array}
+\usepackage{changepage}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\begin{document}
+\begin{defn}
+We say that a function $f\colon\mathbb{R}\to\mathbb{R}$ is \textit{continuous} at the point $x$ if for every real number $\epsilon>0$ there is a real number $\delta>0$ such that for any $x_0$ satisfying $|x_0-x|<\delta$ we have $|f(x_0) - f(x)| < \epsilon$.
+\end{defn}
+\begin{defn}
+Let $\{a_n\} = a_0, a_1, ..., a_n, a_{n+a}...$ be an infinite sequence of real numbers.  We say that $\{a_n\}$ \textit{converges to the limit} $l$ if $l$ is a real number satisfying the following condition:
+\begin{adjustwidth}{.5cm}{}
+For every real number $\epsilon>0$ there is an integer $N$ such that for every $n \geq N$ we have $|a_n - l| < \epsilon$.
+\end{adjustwidth}
+\end{defn}
+\begin{exmp}
+The sequence $\{1/n\}$ converges to 0.
+\begin{proof}
+Let $\epsilon>0$ be given. Let $N$ be the smallest integer such that $1/N < \epsilon$.  We know there is such an $N$, since any $N > 1/ \epsilon$ will satisfy this inequality. Then for any $n \geq N$ we have $1/n \leq 1/N < \epsilon$.  Therfore, for any $n \geq N$, we must have $|1/n - 0| < \epsilon$.  This shows that $\{1/n\}$ converges to the limit $0$.
+\end{proof}
+\end{exmp}
+\begin{exmp}
+The sequence $\{n\}$ does not converge.
+\begin{proof}
+Proof by contradiction.  Suppose that $l$ is a finite real number and the limit of this sequence. Then choosing $\epsilon = 1$ in the definition, there must exist an $N$ such that for all $n \geq N$, $|n - l| < 1$. This is impossible since $l$ is a fixed and finite real number.  Let $m$ be the smallest integer strictly greater than $l + 1$.  Then clearly $|m - l| > 1$ and for any $n \geq m$, $|m - l| > 1$, so there can be no $N$ such that for every $n \geq N$, $|n - l| < 1$. This contradicts the assumption that $l$ is the limit of the sequence.
+\end{proof}
+\end{exmp}
+\begin{exmp}
+The sequence $\{1 + (-1)^n/n^2\}$ converges to $1$.
+\begin{proof}
+Let $a_n$ be the $n^{th}$ term of his sequence.  If $n$ is even, $a_n = 1 + 1/n^2$ and if $n$ is odd, $a_n = 1 - 1/n^2$.  Let $\epsilon > 0$ be given.  We need to find $N$ so that for all $n \geq N$,$|a_n - 1| < \epsilon$.  Choosing $N$ so that $1/N^2 < \epsilon$ will work.  As in the first example, we know there must be an $N$ satisfying $1/N^2 < \epsilon$.  Now consider any $n \geq N$.  If $n$ is even, then $a_n = 1 + 1/n^2$.  Since $n \geq N$, $1/n^2 \leq 1/N^2$, so $a_n \leq 1 + \epsilon$.  So we have $1 < a_n < 1 + \epsilon$ from which it follows that $|a_n - 1| < \epsilon$.  If $n$ is odd, then $a_n = 1 - 1/n^2$. Since $n \geq N$, $1/n^2 \leq 1/N^2$, so $a_n \geq 1 - \epsilon$.  So we have $1 - \epsilon < a_n < 1$, so again $|a_n - 1| < \epsilon$.
+\end{proof}
+\end{exmp}
+\begin{thm}
+A function $f\colon\mathbb{R}\to\mathbb{R}$ is \textit{continuous} at the point $x$ iff for every sequence $\{a_n\}$ converging to $x$, the sequence $\{f(a_n)\}$ converges to $f(x)$.
+\begin{proof}
+$\Rightarrow$: Suppose that $f$ is continuous at $x$ and $\{a_n\}$ is a sequence converging to $x$. We need to show that $\{f(a_n)\}$ converges to $f(x)$.  Let $\epsilon>0$ be given. Since $f$ is continuous at $x$ there must exist a $\delta$ such that if $|x_0 - x|<\delta$ then $|f(x_0) - f(x)| < \epsilon$.  Since $\{a_n\}$ converges to $x$ there is a positive integer $N$ such that for all $n\geq N$, $|a_n - x| < \delta$. By the choice of $\delta$ it follows that for all $n\geq N$, $|f(a_n) - f(x)| < \epsilon$.
+
+$\Leftarrow$: We prove the contrapositive, i.e. we show that if there is a sequence $\{a_n\}$ converging to $x$ but $\{f(a_n)\}$ does not converge to $f(x)$ then $f$ is not continuous at $x$.  Assume then that we have such a sequence. By definition of convergence, $\{f(a_n)\}$ not converging to $f(x)$ means that there must exist an $\epsilon>0$ such that for every integer $N$ there is an $n\geq N$ such that \mbox{$|f(a_n) - f(x)| \geq \epsilon$.}  We show that for this $\epsilon$ there is no $\delta$ such that for every $x_0$ satisfying $|x_0-x|<\delta$, we have $|f(x_0) - f(x)| < \epsilon$.  Let $\delta$ be any positive number. We need to produce an $x_0$ satisfying $|x_0-x|<\delta$ but $|f(x_0) - f(x)| \geq \epsilon$.  Since $\{a_n\}$ converges to $x$, there is an $N$ such that for all $n\geq N$,$|a_n-x|<\delta$.  But for every $N$ there is some $a_n$ with $n\geq N$ such that $|f(a_n) - f(x)| \geq \epsilon$. This $a_n$ shows that $\delta$ can't work for $\epsilon$.  Since $\delta$ was arbitrary, this shows that $f$ is not continuous at $x$.
+\end{proof}
+\end{thm}
+\begin{rem}
+The preceding theorem is true for any function $f\colon X \to Y$ where $X$ and $Y$ are any metric spaces.  Just changing absolute value signs to metric computations (e.g. $|x_0 - x|$ becomes $d(x_0,x)$) the proof works unchanged.
+\end{rem}
+\begin{rem}
+Note that the definition of continuity above is equivalent to the following:
+\begin{adjustwidth}{.5cm}{}
+For every real number $\epsilon>0$ there is a real number $\delta>0$ such that for any $x_0$ in $B(x;\delta)$ we have $f(x_0)$ in $B(f(x); \epsilon)$
+\end{adjustwidth}
+Above is the definition of continuity in metric spaces.
+\end{rem}
+\begin{defn}
+If $f$ is a function and $A$ is a subset of the domain of $f$, then the \textit{image of $A$ under $f$} is $\{f(x) \colon x \in A\}$. 
+\end{defn}
+\begin{thm}
+Let $f$ be a continuous function defined on a metric space $X$ and let $A$ be a compact subset of $X$.  Then the image of $A$ under $f$ is compact.  (The continuous image of a compact set is compact).
+\begin{proof}
+Let $f$, $X$ and $A$ satisfy the hypotheses of the theorem. Let $B$ be the image of $A$ under $f$ and let $F$ be an open covering of $B$. We need to show that $B$ has a finite subcovering. We will do this by showing that open coverings of $B$ can be mapped back to open coverings of $A$ and then showing that finite subcoverings of coverings of $A$ map to finite subcoverings of $B$.
+
+Let $O$ be an element of $F$. Let $O' = \{x \in X \colon f(x) \in O\}$ ($O'$ is the \textit{inverse image} of $O$ under $f$).  First we show that $O'$ is open. Let $x \in O'$ be arbitrary and let $y = f(x)$. So $y \in O$. Since $O$ is open, there is $r>0$ such that $B(y;r)$ is contained in $O$. Since $f$ is continuous, there exits $\delta>0$ such that if $x_0$ is in $B(x;\delta)$ then $f(x_0)$ is in $B(y;r)$.  So any element of $B(x;\delta)$ is in $O'$ (because its image is in $B(y;r)$ which is contained in $O$). Therefore $O'$ is open.  Now let $F'$ be the inverse images of all of the open sets in $F$ - i.e. $F' = \{O' \subset X \colon f(O') = O$ for some $O \in F\}$.  We just showed that each set in $F'$ is open. Since $F$ covers $B$ it follows that $F'$ covers $A$ (every $y$ in $B$, the image of $A$ under $F$, is covered by some $O$ in $F$, so the element $x$ that maps to $y$ must be in the corresponding $O'$ in $F'$). So $F'$ is an open covering of $A$.  Since $A$ is compact, there is an finite subcovering $G' \subset F'$ that covers $A$.  Let $G$ be the set of all images of sets in $G'$ under $F$.  Then $G$ is a finite subcovering of $F$ that covers $B$.
+\end{proof}
+\end{thm}
+\begin{rem}
+Embedded in the proof above is the proof that if $f$ is continuous, the inverse image of an open set in the range of $f$ is open. The converse of this is also true - i.e. $f$ is continuous iff the inverse image of every open set in the codomain of $f$ is open.  This is actually the definition of continuity in topological spaces.  Notice that there are no metrics involved in this definition (no balls or absolute values).
+\end{rem}
+\begin{exercise} Show that if the sequence $\{a_n\}$ is unbounded, then it can't converge. (Hint: Suppose, for sake of contradiction, that an unbounded sequence converges to a limit. Consider $\epsilon = 1$ or any other number actually. All but finitely many terms in the sequence have to be less than the limit plus 1. Why?  There are only finitely many others.  Write this all down carefully.)
+\end{exercise}
+\begin{exercise} Show that the sequence $\{sin(n \pi / 2)\}$ does not converge.
+\end{exercise}
+\begin{exercise}
+Does the sequence $\{sin(1/n) / (1/n)\}$ converge?  If so, what is the limit? Prove your answer (hint: use l'Hospital's rule to evaluate the limit of $sin(x) / x$ as $x$ approaches $0$ to determine whether the limit exists).
+\end{exercise}
+\begin{exercise}
+Suppose that ${a_n}$ is a convergent sequence of real numbers.  Show that for any $\epsilon > 0$ there is an integer $N$ such that for all $m$ and $n$ satisfying $n \geq N$ and $m \geq N$, we have $|a_n - a_m|< \epsilon$. (The last statement says that $\{a_n\}$ is a \textit{Cauchy sequence}).
+\end{exercise}
+\end{document}
