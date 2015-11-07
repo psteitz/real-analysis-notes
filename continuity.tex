@@ -84,4 +84,10 @@ Does the sequence $\{sin(1/n) / (1/n)\}$ converge?  If so, what is the limit? Pr
 \begin{exercise}
 Suppose that ${a_n}$ is a convergent sequence of real numbers.  Show that for any $\epsilon > 0$ there is an integer $N$ such that for all $m$ and $n$ satisfying $n \geq N$ and $m \geq N$, we have $|a_n - a_m|< \epsilon$. (The last statement says that $\{a_n\}$ is a \textit{Cauchy sequence}).
 \end{exercise}
+\begin{thm}
+Every bounded sequence of real numbers contains a convergent subsequence.
+\begin{proof}
+Let $\{a_n\}$ be a bounded sequence.  By the Bolzano-Weirstrass theorem, the range of the sequence (i.e. the set of all points in the sequence) has an accumulation point $a$. So given any $\epsilon>0$ there are infinitely many terms in the sequence within $\epsilon$ of $a$.  We can construct a subsequence converging to $a$ by picking smaller and smaller $\epsilon$'s and selecting points closer and closer to $a$.  Formally, choose $k_1$ so that $|a_{k_1} - a| < 1$, $k_2$ so that $|a_{k_2} - a| < 1/2$...  In general, choose $k_n$ so that $|a_{k_n} - a| < 1/n$.  We know we can find these points because $a$ is an accumulation point (we can always find $k_n > k_i$ for $i = 1,..., n - 1$ satisfying $|a_{k_n} - a| < 1/n$ because there are infinitely many elements of the range satisfying this property and $\{a_{k_1}, ..., a_{k_{n-1}}\}$ is a finite set).  We will now show that $\{a_{k_n}\}$ converges to $a$.  Let $\epsilon>0$ be given. Let $N$ be the smallest integer such that $1/N < \epsilon$.  Then for all $n \geq N$, $|a_{k_n} - a| < 1/\epsilon$.
+\end{proof}
+\end{thm}
 \end{document}
