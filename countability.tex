@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,epsfig,epstopdf,titling,url,array}
+\usepackage{changepage}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\begin{document}
+\begin{defn}
+A function $f \colon A \to B$ is \textit{injective} if for any $a_1$ and $a_2$ in $A$, $f(a_1) = f(a_2)$ implies $a_1 = a_2$.
+\end{defn}
+\begin{defn}
+A set $A$ is \textit{countable} if there is an injective function $f \colon A \to \mathbb{N}$ where $\mathbb{N}$ is the set of natural numbers $\{0, 1, ..., n, n+1 ...\}$ (\textit{Note}: some not fully literate mathematicians start the natural numbers at $1$).
+\end{defn}
+\begin{rem}
+If $A$ is countable, then using the injective function in the definition, you can "count" or \textit{enumerate} the set by listing out the elements of the set in the order of their images under the function - i.e. a countable set $A$ can always be written as the range of a sequence:  $a_0, a_1, a_2, ..., a_n, a_{n+1}, ...$.  To prove this from the definition, you need to let $a_0$ be the element of $A$ with the smallest value under $f$, $a_1$ the next one, and so on.
+\end{rem}
+\begin{defn}
+A set is \textit{finite} if there is a natural number $n$ and an injective function $f \colon A \to \{0, 1, ..., n-1\}$. (Note: in set theory, we define the natural number $n$ to be the set of natural numbers less than n, so this definition says there is an injective function from $A$ into $n$.) 
+\end{defn}
+\begin{defn}
+A set is \textit{infinite} if it is not finite.
+\end{defn}
+\begin{defn}
+A set is \textit{countably infinite} if it is countable and infinite.
+\end{defn}
+\begin{defn}
+A set is uncountable if it is not countable.
+\end{defn}
+\begin{rem}
+Every finite set is countable.
+\end{rem}
+\begin{rem}
+Every subset of $\mathbb{N}$ is countable (the identity function is injective).
+\end{rem}
+\begin{thm}
+$\mathbb{N} \times \mathbb{N}$ (the set of ordered pairs of elements of $\mathbb{N}$) is countable.
+\begin{proof}
+Consider the function \mbox{$f \colon \mathbb{N} \times \mathbb{N} \to \mathbb{N}$} defined by \mbox{$f(m, n) = 2^{m} 3^{n}$.} We will show that $f$ is injective.  Suppose that $f(m, n) = f(m_1, n_1)$.  Then $2^{m} 3^{n} = 2^{m_1} 3^{n_1}$.  The two sides of this equation are prime factorizations of the same number.  By the Fundamental Theorem of Arithmetic (unigueness of prime factorization), it follows that the exponents must be the same - i.e., we must have $m = m_1$ and $n = n_1$.  Therefore, $(m, n) = (m_1, n_1)$, proving that $f$ is injective.
+\end{proof}
+\end{thm}
+\begin{thm}
+Suppose that $B$ is countable and there exists an injective function $f \colon A \to B$.  Then $A$ is countable.
+\begin{proof}
+Since $B$ is countable, there is an injective function $g \colon B \to \mathbb{N}$.  Let $h \colon A \to \mathbb{N}$ be defined by $h(a) = g(f(a)$.  We show that $h$ is injective. Suppose that $h(a) = h(a_1)$ for $a, a_1$ in $A$.  Then $g(f(a) = g(f(a_1)$.  Since $g$ is injective, this implies that $f(a) = f(a_1)$.  Now since $f$ is by hypothesis injective, we must have $a = a_1$.
+\end{proof}
+\end{thm}
+\begin{prop}
+The set $\mathbb{Z}$ of integers is countable.
+\begin{proof}
+Define $f \colon \mathbb{Z} \to \mathbb{N}$ by $f(i) = -2i$ if $i \leq 0$; otherwise $f(i) = 2i + 1$. We show that $f$ is injective.  Suppose that $f(i) = f(i_1)$.  If the common value of $f(i)$ and $f(i_1)$ is even, then we must both $i$ and $i_1$ less than or equal to $0$ and $-2i = -2i_1$ which implies $i = i_1$.  If $f(i)$ and $f(i_1)$ are odd, then similarly, we must have both $i$ and $i_1$ positive and $2i +1 = 2i_1 + 1$ so again $i = i_1$.
+\end{proof}
+\end{prop}
+\begin{thm}
+The set $\mathbb{Q}$ of rational numbers is countable.
+\begin{proof}
+Consider the mapping $f \colon \mathbb{Q} \to \mathbb{N}$ defined by $f(q) = 2^m3^n5^{sgn(m/n)}$, where $m$ and $n$ are positive integers with $|q| = m/n$ in lowest terms and $sgn(q)$ taking the value $0$ if the argument is positive and 1 if it is negative.  We show that this function is injective.  Suppose that $f(q) = f(q_1)$.  Then writing $q = (m/n)sgn(q)$ and $q_1 = (m_1/n_1)sgn(q_1)$, we must have  $2^m3^n5^{sgn(m/n)} = 2^{m_1}3^{n_1}5^{sgn(m_1/n_1)}$. By unique prime factorization, we must have $m = m_1, n=m_1$ and $sgn(q) = sgn(q_1).$  It follows that $q = q_1$.
+\end{proof}
+\end{thm}
+\begin{thm}
+$\mathbb{R}$ is uncountable.
+\begin{proof}{(Cantor)} Proof by contradiction.  Suppose that $\mathbb{R}$ is countable.  Then by the remark above, we can write $\mathbb{R} = r_0, r_1, r_2, ..., r_n, r_{n+1} ...$ with every real number occurring somewhere in the sequence.  Given such an enumeration, we will construct a number $r$ that can't be in the sequence, thus deriving a contradiction.  For each $i = 0, 1, 2, ... $ define the $i^{th}$ digit of the decimal expansion or $r$ to be equal to one more (push to $0$ if $9$)  than the corresponding digit in the expansion of $r_i$, starting with $r = 1$.  So $r = 1.d_0d_1d_2...$ with $d_i$ different from the corresponding digit in $r_i$ for each $i$. Then $r$ can't be equal to any of the $r_n$ which is a contradiction.
+\end{proof}
+\end{thm}
+\end{document}
