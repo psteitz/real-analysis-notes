@@ -137,7 +137,7 @@ Any bounded closed interval $[a,b]$ in $\mathbb{R}$ is compact.  To prove this, 
 The unit circle in $\mathbb{R}^2$ (set of all points exactly one unit from the origin) is compact in $\mathbb{R}^2$, but its interior (the set of points less than one unit from the origin is open, not compact.
 \end{exmp}
 \begin{exmp}
-The whole real line is not compact.  Consider the open covering that puts a ball of radius 1 around each real number.  By Lindlof, this has a countable sub-covering; but there can't be a finite one, because any finite sub-covering would have a max and min x-ball and the largest covered number would be the max +1.
+The whole real line is not compact.  Consider the open covering that puts a ball of radius 1 around each real number.  By Lindelof, this has a countable sub-covering; but there can't be a finite one, because any finite sub-covering would have a max and min x-ball and the largest covered number would be the max +1.
 \end{exmp}
 \begin{rem}
 If $A$ and $B$ are compact, then $A \cup B$ is compact.  The proof of this is a simple exercise.  Note that every open covering of $A \cup B$ is a covering of both $A$ and $B$.  From this it follows that the union of finitely many closed intervals is compact.
@@ -170,7 +170,14 @@ Consider the collection of closed sets $$\{[0,1 - 1/n] : n = 1,2, 3...\}$$.  The
 Consider the collection of open sets $$\{(-1/n,1/n) : n = 1,2, 3...\}$$.  The intersection of these sets is $\{0\}$.  This set is obviously not open, since any ball around its unique element contains other real numbers. This shows that a countable intersection of open sets need not be open.
 \end{exmp}
 \begin{thm}{(Cantor Intersection Theorem)}
-Let $\{C_0, C_1, ... C_n, ...\}$ be a countable sequence of non-empty closed subsets of $\mathbb{R}^n$ such that for each $n$, $C_{n+1} \subset C_n$.  Suppose further that $C_0$ is bounded. Then the intersection of all of the $C_n$ is non-empty and closed.
+Let $C_0, C_1, ... C_n, ...$ be a countable sequence of non-empty closed subsets of $\mathbb{R}^n$ such that for each $n$, $C_{n+1} \subset C_n$.  Suppose further that $C_0$ is bounded. Then the intersection of all of the $C_n$ is non-empty and closed.
+\begin{proof}
+Let $C_0, C_1, ... C_n, ...$ satisfy the conditions in the hypothesis and let $C$ be the intersection of these sets. By Theorem 0.0.7, we know that $C$ is closed, so it suffices to show that $C$ is non-empty.
+
+First, consider the case where for some $i$, $C_i$ is finite.  Since all of the sets are non-empty and the sequence of sets is decreasing ($C_{n+1} \subset C_n$ for each $n$), it follows that there must exist some $N$ such that for all $n \geq N$, $C_n = C_N$.  This must be the case because the finitely many elements in $C_i$ can only represent finitely many set-wise differences in the sequence $C_i \supseteq C_{i+1} \supseteq C_{i+2}...$.  By hypothesis, $C_N$ is non-empty, so since for all $n \geq N$, $C_n = C_N$ it follows that $C = C_N$ so $C$ is non-empty.
+
+Now suppose that all of the $C_i$ are infinite. Let the sequence of points $c_0, c_1, ..., c_n, c_{n+1}, ...$ be defined as follows.  Let $c_0$ be an arbitrary element of $C_0$.  Then let $c_1$ be an element of $C_1 - \{c_0\}$.  We know there has to exist such an element because we are assuming that $C_1$ is infinite.  Similarly, let $c_2$ be an element of $C_2 - \{c_0, c_1\}$ and in general, let $c_n$ be an element of $C_n - \{c_0, ... , c_{n-1}\}$.  Again, these elements have to exist because each of the $C_n$ is infinite and $\{c_0, ... , c_{n-1}\}$ is always finite. Since $C_0$ is bounded and all of the $c_i$ are elements of $C_0$, by the Bolzano-Weirstrass Theorem, the set $\{c_n \colon n \in \mathbb{N} \}$ has an accumulation point $d$. Now, observe that $d$ is actually an accumulation point of \textit{every} set $C_n$.  To prove this, first look at $C_0$. Every element of $\{c_n \colon n \in \mathbb{N} \}$ is in $C_0$ so any accumulation point of this set is an accumulation point of $C_0$.  Next look at $C_1$. Every element of $\{c_n \colon n \geq 1 \}$ is in $C_1$.  It's not possible for $\{c_n \colon n \in \mathbb{N} \}$ to have accumulation points that $\{c_n \colon n \geq 1 \}$ does not have, so $d$ is an accumulation point of $C_1$ as well.  In general, every element of $\{c_n \colon n \geq k \}$ is in $C_k$ and since $\{c_n \colon n \geq k \}$ differs from $\{c_n \colon n \in \mathbb{N} \}$ by only finitely many elements, it follows that $d$ must be an accumulation point of $\{c_n \colon n \geq k  \}$ which means it must be an accumulation point of $C_k$. Since each of the $C_n$ are by hypothesis closed, we must then have $d \in C_n$ for all $n$, proving that the intersection is non-empty.
+\end{proof}
 \end{thm}
 \begin{thm}{(Heine-Borel)}
 Every closed and bounded subset of $\mathbb{R}^n$ is compact.
