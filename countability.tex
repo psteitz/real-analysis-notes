@@ -48,6 +48,12 @@ $\mathbb{N} \times \mathbb{N}$ (the set of ordered pairs of elements of $\mathbb
 Consider the function \mbox{$f \colon \mathbb{N} \times \mathbb{N} \to \mathbb{N}$} defined by \mbox{$f(m, n) = 2^{m} 3^{n}$.} We will show that $f$ is injective.  Suppose that $f(m, n) = f(m_1, n_1)$.  Then $2^{m} 3^{n} = 2^{m_1} 3^{n_1}$.  The two sides of this equation are prime factorizations of the same number.  By the Fundamental Theorem of Arithmetic (unigueness of prime factorization), it follows that the exponents must be the same - i.e., we must have $m = m_1$ and $n = n_1$.  Therefore, $(m, n) = (m_1, n_1)$, proving that $f$ is injective.
 \end{proof}
 \end{thm}
+\begin{rem}
+Note that the preceding proof could be modified to show that for any $n$ the set of $n$-tuples from $\mathbb{N}$ is countable by just adding primes to the product in the function definition.  For example, to show that $\mathbb{N} \times \mathbb{N} \times \mathbb{N}$ is countable, just use \mbox{$f(m, n, p) = 2^{m} 3^{n} 5^p$}.
+\end{rem}
+\begin{rem}
+The preceding proof can also be modified to show that for any countable sets $A$ and $B$, $A \times B$ is countable as follows.  Suppose that $A$ and $B$ are countable.  Then there must exist injective functions $f \colon A \to \mathbb{N}$ and $g \colon B \to \mathbb{N}$.  Define $h \colon A \times B \to \mathbb{N}$ by $h(a,b) = 2^{f(a)} 3^{g(b)}$.  Then since $f$ and $g$ are injective, it follows by the argument in the proof of the theorem that $h$ is injective.
+\end{rem}
 \begin{thm}
 Suppose that $B$ is countable and there exists an injective function $f \colon A \to B$.  Then $A$ is countable.
 \begin{proof}
