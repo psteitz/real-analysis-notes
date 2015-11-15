@@ -19,7 +19,7 @@
 We say that a function $f\colon\mathbb{R}\to\mathbb{R}$ is \textit{continuous} at the point $x$ if for every real number $\epsilon>0$ there is a real number $\delta>0$ such that for any $x_0$ satisfying $|x_0-x|<\delta$ we have $|f(x_0) - f(x)| < \epsilon$.
 \end{defn}
 \begin{defn}
-Let $\{a_n\} = a_0, a_1, ..., a_n, a_{n+a}...$ be an infinite sequence of real numbers.  We say that $\{a_n\}$ \textit{converges to the limit} $l$ if $l$ is a real number satisfying the following condition:
+Let $\{a_n\} = a_0, a_1, ..., a_n, a_{n+1}...$ be an infinite sequence of real numbers.  We say that $\{a_n\}$ \textit{converges to the limit} $l$ if $l$ is a real number satisfying the following condition:
 \begin{adjustwidth}{.5cm}{}
 For every real number $\epsilon>0$ there is an integer $N$ such that for every $n \geq N$ we have $|a_n - l| < \epsilon$.
 \end{adjustwidth}
@@ -81,15 +81,43 @@ Embedded in the proof above is the proof that if $f$ is continuous, the inverse 
 \begin{exercise}
 Does the sequence $\{sin(1/n) / (1/n)\}$ converge?  If so, what is the limit? Prove your answer (hint: use l'Hopital's rule to evaluate the limit of $sin(x) / x$ as $x$ approaches $0$ to determine whether the limit exists).
 \end{exercise}
-\begin{exercise}
-Suppose that ${a_n}$ is a convergent sequence of real numbers.  Show that for any $\epsilon > 0$ there is an integer $N$ such that for all $m$ and $n$ satisfying $n \geq N$ and $m \geq N$, we have $|a_n - a_m|< \epsilon$. (The last statement says that $\{a_n\}$ is a \textit{Cauchy sequence}).
-\end{exercise}
+\begin{defn}
+A sequence $\{a_n\}$ is called a \textit{Cauchy sequence} if for any $\epsilon > 0$ there is an integer $N$ such that for all $m$ and $n$ satisfying $n \geq N$ and $m \geq N$, we have $|a_n - a_m|< \epsilon$.
+\end{defn}
+\begin{thm}
+The sequence $\{a_n\}$ of real numbers converges iff it is Cauchy.
+\begin{proof}
+$\Rightarrow:$ Suppose that $\{a_n\}$ converges to the limit $l$.  Let $\epsilon>0$ be given. Since the sequence converges to $l$, there must exist $N$ such that for all $n \geq N$, we have $|a_n - l| < \epsilon / 2.$  Therefore, for all $n,m \geq N$,
+$|a_n - a_m| = |a_n - l + l - a_m| \leq |a_n - l| + |a_m - l| <\epsilon / 2 + \epsilon /2 = \epsilon.$
+
+$\Leftarrow:$ Suppose that $\{a_n\}$ is Cauchy. Then there must exist some $N$ such that for all $n,m \geq N$,
+$|a_n - a_m| < 1$. It follows that for all $n > N, |a_n| < |a_N| + 1$ which means that the set $A = \{a_n : n > N\}$ is bounded.  If $A$ contains only finitely many values, then the proof that the sequence converges is trivial, since choosing $\epsilon$ less than the smallest difference between values forces them all to be the same for sufficiently large $n$.  So assume without loss of generality that $A$ is infinite. By the Bolzano-Weirstrass theorem, $A$ must have an accumulation point $l$.  We show that the sequence converges to $l$.  Let $\epsilon>0$ be given.  Since $\{a_n\}$ is Cauchy, there must exist $N$ such that for all $n,m \geq N$, $|a_n - a_m| < \epsilon.$  Since $l$ is an accumulation point of $A$, there must be some $n > N$ such that $|a_n - l| < \epsilon/2$.  Now for all $m \geq N$ we must have $|a_n - a_m| < \epsilon/2$.  Therefore, for all $m \geq N$ , $|a_n - l| = |a_n -a_m + a_m - l| \leq |a_n - a_m| + |a_n - l| < \epsilon/2 + \epsilon/2 = \epsilon.$ 
+\end{proof}
+\end{thm}
+\begin{rem}
+The proof above could be applied unchanged other than doubling the "$|$"s everywhere to prove this result for sequences in $\mathbb{R}^n$.  The direction that convergence implies being Cauchy applies in any metric space.  The reverse direction requires that the metric space has an additional property: \textit{completeness}.
+\end{rem}
+\begin{defn}
+The sequence $\{a_n\}$ is bounded if there exists a real number $M$ such that for all $n$, $|a_n| < M$.
+\end{defn}
 \begin{thm}
 Every bounded sequence of real numbers contains a convergent subsequence.
 \begin{proof}
 Let $\{a_n\}$ be a bounded sequence. First, consider the case where the range of the sequence is finite - i.e. where \mbox{$\{a \in \mathbb{R} \colon a = a_n $ for some $n\}$} consists of only finitely many distinct numbers. Then at least one of these values must occur infinitely often - i.e., there must exist a real number $a$ such that $a_n = a$ for infinitely many values of $n$.  Consider the infinite subsequence ${a_{n_k}}$ consisting of all elements equal to $a$.  This subsequence clearly converges to $a$.
 
 Now suppose that the range of the sequence is infinite. By the Bolzano-Weirstrass theorem, the range of the sequence (i.e. the set of all points in the sequence) has an accumulation point $a$. So given any $\epsilon>0$ there are infinitely many terms in the sequence within $\epsilon$ of $a$.  We can construct a subsequence converging to $a$ by picking smaller and smaller $\epsilon$'s and selecting points closer and closer to $a$.  Formally, choose $k_1$ so that $|a_{k_1} - a| < 1$, $k_2$ so that $|a_{k_2} - a| < 1/2$...  In general, choose $k_n$ so that $|a_{k_n} - a| < 1/n$.  We know we can find these points because $a$ is an accumulation point (we can always find $k_n > k_i$ for $i = 1,..., n - 1$ satisfying $|a_{k_n} - a| < 1/n$ because there are infinitely many elements of the range satisfying this property and $\{a_{k_1}, ..., a_{k_{n-1}}\}$ is a finite set).  We will now show that $\{a_{k_n}\}$ converges to $a$.  Let $\epsilon>0$ be given. Let $N$ be the smallest integer such that $1/N < \epsilon$.  Then for all $n \geq N$, $|a_{k_n} - a| < 1/\epsilon$.
+\end{proof}
+\end{thm}
+\begin{defn}
+The sequence $\{a_n\}$ is \textit{monotone increasing} if for all $n,m$ if $m\geq n$ then $a_m \geq a_n$.  Similarly, we say that $\{a_n\}$ is \textit{monotone decreasing} if $m \geq n$ implies $a_m \leq a_n$.  A sequence is \textit{monotone} if it is either monotone increasing or monotone decreasing.
+\end{defn}
+\begin{thm}
+Every bounded monotone sequence of real numbers converges.
+\begin{proof}
+Let $\{a_n\}$ be bounded and monotone. Let $A$ be the range of the sequence,i.e. $A = \{r \in \mathbb{R}: r = a_n$ for some $n \}$.  Suppose first that $A$ is finite.  We show that in this case, there exists $N$ such that for all $n \geq N$, $a_n = a_N$.  Consider first $\{a_n\}$ monotone increasing. Write $A = \{a_0, a_1, ..., a_{|A| - 1}\}$ in increasing order.  Since $\{a_n\}$ is monotone increasing, this enumeration must be the first $|A|$ terms of $\{a_n\}$ and all subsequent terms must equal $a_{|A| - 1}$.  So $\{a_n\}$ converges to  $a_{|A| - 1}$.  The same argument works for the monotone decreasing case, with $A$ enumerated in decreasing order.
+
+Now consider the case where $A$ is infinite.  Then since $\{a_n\}$ is bounded it follows that $A$ is bounded, so by the Bolzano-Weirstrass Theorem, $A$ has an accumulation point $a$.  We show that ${a_n}$ converges to $a$.  First consider the monotone increasing case.  First we will show that we must have $a \geq a_n$ for all $n$.  Suppose that for some $n$, $a < a_n$.  Let $\epsilon = a_n - a$.  Since $a$ is an accumulation point, there have to be infinitely many points from $A$ within $\epsilon /2$ of $a$.  Therefore, there must exist $m > n$ such that $a < a_m < a_n$; but this contradicts $\{a_n\}$ increasing.  Therefore we can assume that $a \geq a_n$ holds for all $n$.  Let $\epsilon > 0$ be given. Since $a$ is an accumulation point, there must exist $N$ such that $|a_N - a| < \epsilon$.  Since $a \geq a_N$ and ${a_n}$ is increasing, it follows that for all $n > N$, we must have
+$|a_N - a|$ (since we must have $a_N \leq a_n \leq a$).  The monotone decreasing case is handled similarly, just reversing all inequalities.
 \end{proof}
 \end{thm}
 \end{document}
